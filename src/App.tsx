@@ -16,20 +16,22 @@ interface State {
   tasks: Task[];
 }
 
-interface AddTaskAction {
+export interface AddTaskAction {
   type: "ADD_TASK";
   payload: Task;
 }
 
-interface DeleteTaskAction {
+export interface DeleteTaskAction {
   type: "DELETE_TASK";
   payload: number; // Task ID
 }
 
-interface ToggleTaskAction {
+export interface ToggleTaskAction {
   type: "TOGGLE_TASK";
   payload: number; // Task ID
 }
+
+export type TaskTableAction = AddTaskAction | DeleteTaskAction | ToggleTaskAction;
 
 type Action = AddTaskAction | DeleteTaskAction | ToggleTaskAction;
 
@@ -83,7 +85,7 @@ function App() {
       <TaskModal
         show={showModal}
         onClose={closeModal}
-        addTask={() => addTask}
+        addTask={addTask}
       />
       <Divider />
 

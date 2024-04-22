@@ -1,6 +1,7 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Table } from "antd";
 import { Dispatch } from "react";
+import { TaskTableAction } from "../../App";
 
 interface Task {
   id: number;
@@ -11,7 +12,7 @@ interface Task {
 
 interface TaskTableProps {
   tasks: Task[];
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch<TaskTableAction>;
 }
 
 function TaskTable({ tasks, dispatch }: TaskTableProps) {
@@ -45,11 +46,17 @@ function TaskTable({ tasks, dispatch }: TaskTableProps) {
       key: "actions",
       render: (record: Task) => (
         <span>
-          <Button onClick={() => handleToggle(record.id)} style={{ marginLeft: "100px" }}>
+          <Button
+            onClick={() => handleToggle(record.id)}
+            style={{ marginLeft: "100px" }}
+          >
             <EditOutlined style={{ marginLeft: "10px" }} />
             {record.completed ? "Desmarcar" : "Marcar"}
           </Button>
-          <Button onClick={() => handleDelete(record.id)} style={{ marginLeft: "10px", background: "red", color: "#FFFF" }}>
+          <Button
+            onClick={() => handleDelete(record.id)}
+            style={{ marginLeft: "10px", background: "red", color: "#FFFF" }}
+          >
             <DeleteOutlined /> Excluir
           </Button>
         </span>
