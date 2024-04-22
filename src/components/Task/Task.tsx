@@ -2,10 +2,15 @@ import { DatePicker, Form, Input, Modal } from "antd";
 import { Moment } from "moment";
 import { useState } from "react";
 
+export interface Task {
+  id: number;
+  description: string;
+}
+
 interface TaskModalProps {
   show: boolean;
   onClose: () => void;
-  addTask: (task: any) => void;
+  addTask: (task: Task) => void;
 }
 
 const TaskModal: React.FC<TaskModalProps> = ({ show, onClose, addTask }) => {
