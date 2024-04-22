@@ -5,6 +5,8 @@ import { useState } from "react";
 export interface Task {
   id: number;
   description: string;
+  date: string;
+  completed: boolean;
 }
 
 interface TaskModalProps {
@@ -21,9 +23,10 @@ const TaskModal: React.FC<TaskModalProps> = ({ show, onClose, addTask }) => {
     const newTask = {
       id: Math.random(),
       description: taskDescription,
-      date: taskDate ? taskDate.format("YYYY-MM-DD") : null,
+      date: taskDate ? taskDate.format("YYYY-MM-DD") : "",
       completed: false,
     };
+
     addTask(newTask);
     setTaskDescription("");
     setTaskDate(null);
@@ -43,7 +46,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ show, onClose, addTask }) => {
           wrapperCol={{ span: 14 }}
           layout="horizontal"
         >
-          <Form.Item label="InDescrição">
+          <Form.Item label="Descrição">
             <Input onChange={(e) => setTaskDescription(e.target.value)} />
           </Form.Item>
 

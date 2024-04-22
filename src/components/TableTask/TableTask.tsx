@@ -3,7 +3,7 @@ import { Button, Table } from "antd";
 import { Dispatch } from "react";
 import { TaskTableAction } from "../../App";
 
-interface Task {
+export interface Task {
   id: number;
   description: string;
   date: string;

@@ -1,11 +1,10 @@
 import { useReducer, useState } from "react";
 import TaskModal from "./components/Task/Task";
 import TaskTable from "./components/TableTask/TableTask";
-import Task from "./components/Task/Task";
 import { Button, Divider } from "antd";
 import "./App.css";
 
-interface Task {
+interface TaskProps {
   id: number;
   description: string;
   date: string;
@@ -13,12 +12,12 @@ interface Task {
 }
 
 interface State {
-  tasks: Task[];
+  tasks: TaskProps[];
 }
 
 export interface AddTaskAction {
   type: "ADD_TASK";
-  payload: Task;
+  payload: TaskProps;
 }
 
 export interface DeleteTaskAction {
@@ -31,7 +30,10 @@ export interface ToggleTaskAction {
   payload: number; // Task ID
 }
 
-export type TaskTableAction = AddTaskAction | DeleteTaskAction | ToggleTaskAction;
+export type TaskTableAction =
+  | AddTaskAction
+  | DeleteTaskAction
+  | ToggleTaskAction;
 
 type Action = AddTaskAction | DeleteTaskAction | ToggleTaskAction;
 
@@ -72,7 +74,7 @@ function App() {
     setShowModal(false);
   };
 
-  const addTask = (task: Task) => {
+  const addTask = (task: TaskProps) => {
     dispatch({ type: "ADD_TASK", payload: task });
   };
 
@@ -82,11 +84,7 @@ function App() {
         Criar Tarefa
       </Button>
 
-      <TaskModal
-        show={showModal}
-        onClose={closeModal}
-        addTask={addTask}
-      />
+      <TaskModal show={showModal} onClose={closeModal} addTask={addTask} />
       <Divider />
 
       <TaskTable tasks={state.tasks} dispatch={dispatch} />
